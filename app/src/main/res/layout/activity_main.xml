@@ -1,19 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#bde0fc"
     tools:context=".MainActivity">
 
+    <!-- 상단 타이틀 -->
     <TextView
+        android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:text="JBNU\n오뭐먹"
+        android:textSize="48sp"
+        android:textStyle="bold"
+        android:textColor="#576bfe"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="40dp" />
+
+    <!-- 첫 번째 이미지 (배경 1) -->
+    <ImageView
+        android:id="@+id/imgRectangle6"
+        android:layout_width="1616dp"
+        android:layout_height="468dp"
+        android:src="@drawable/rectangle6"
+        android:scaleType="fitCenter"
+        android:translationX="-228dp"
+        android:translationY="136dp"
+        android:clipToOutline="true"
+        android:backgroundTint="#576bfe"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!-- 두 번째 이미지 (배경 2) -->
+    <ImageView
+        android:id="@+id/imgRectangle5"
+        android:layout_width="1481dp"
+        android:layout_height="1957dp"
+        android:src="@drawable/rectangle5"
+        android:scaleType="fitCenter"
+        android:translationX="-66dp"
+        android:translationY="196dp"
+        android:clipToOutline="true"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!-- 세 번째 이미지 (배경 3) -->
+    <ImageView
+        android:id="@+id/imgRectangle7"
+        android:layout_width="1525dp"
+        android:layout_height="736dp"
+        android:src="@drawable/rectangle7"
+        android:scaleType="fitCenter"
+        android:translationX="-88dp"
+        android:translationY="1962dp"
+        android:clipToOutline="true"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!-- 밸런스 게임 버튼 -->
+    <Button
+        android:id="@+id/btnBalanceGame"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="밥런스게임"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#576bfe"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintWidth_percent="0.9" />
+
+    <!-- 주변 밥집 추천 버튼 -->
+    <Button
+        android:id="@+id/btnNearbyRestaurants"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="주변 밥집 추천"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#576bfe"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/btnBalanceGame"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintWidth_percent="0.9" />
+
+    <!-- 랜덤 밥집 추천 버튼 -->
+    <Button
+        android:id="@+id/btnRandomRestaurant"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="랜덤 밥집 추천"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#576bfe"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/btnNearbyRestaurants"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintWidth_percent="0.9" />
+
+    <!-- 하단 만든이 텍스트 -->
+    <TextView
+        android:id="@+id/tvFooter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="만든이: JBNU"
+        android:textSize="14sp"
+        android:textColor="#d2f5ff"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="16dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
