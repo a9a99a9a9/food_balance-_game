@@ -1,0 +1,143 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#576BFE">
+
+    <!-- 상단 곡선 배경 -->
+
+    <!-- 중앙 배경 -->
+
+    <!-- 하단 곡선 배경 -->
+
+
+    <ImageView
+        android:id="@+id/rectangle6"
+        android:layout_width="match_parent"
+        android:layout_height="124dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="62dp"
+        android:layout_marginEnd="0dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/rectangle6" />
+
+    <ImageView
+        android:id="@+id/rectangle5"
+        android:layout_width="wrap_content"
+        android:layout_height="710dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="97dp"
+        android:layout_marginEnd="-3dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/rectangle5" />
+
+    <ImageView
+        android:id="@+id/rectangle7"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_alignParentBottom="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/rectangle7" />
+
+    <!-- 타이틀 텍스트 -->
+
+    <!-- 밸런스 게임 버튼 -->
+
+    <!-- 주변 밥집 추천 버튼 -->
+
+    <TextView
+        android:id="@+id/title_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="150dp"
+        android:layout_marginEnd="154dp"
+        android:gravity="center"
+        android:text="JBNU\n오뭐먹"
+        android:textColor="#576BFE"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <!-- 랜덤 밥집 추천 버튼 -->
+
+    <!-- 식당 검색 버튼 -->
+
+    <!-- 만든이 텍스트 -->
+    <Button
+        android:id="@+id/btn_search_restaurant"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_below="@id/btn_random_recommendation"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="45dp"
+        android:background="@drawable/rounded_box"
+        android:gravity="center"
+        android:text="식당 검색"
+        android:textColor="#D2F5FF"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:theme="@null"
+        android:backgroundTint="@null"/>
+
+    <Button
+        android:id="@+id/btn_balance_game"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_below="@id/title_text"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="45dp"
+        android:layout_marginEnd="45dp"
+        android:background="@drawable/rounded_box"
+        android:gravity="center"
+        android:text="밥런스게임"
+        android:textColor="#D2F5FF"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/btn_nearby_recommendation"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_below="@id/btn_balance_game"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="45dp"
+        android:background="@drawable/rounded_box"
+        android:gravity="center"
+        android:text="주변 밥집 추천"
+        android:textColor="#D2F5FF"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:theme="@null"/>
+
+    <Button
+        android:id="@+id/btn_random_recommendation"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_below="@id/btn_nearby_recommendation"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="45dp"
+        android:background="@drawable/rounded_box"
+        android:gravity="center"
+        android:text="랜덤 밥집 추천"
+        android:textColor="#D2F5FF"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:theme="@null"/>
+
+    <TextView
+        android:id="@+id/text_made_by"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="28dp"
+        android:layout_marginBottom="20dp"
+        android:gravity="center"
+        android:text="만든이:"
+        android:textColor="#D2F5FF"
+        android:textSize="14sp" />
+</RelativeLayout>
