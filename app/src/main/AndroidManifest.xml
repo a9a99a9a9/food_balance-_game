@@ -2,8 +2,13 @@
     package="com.example.ricegame"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
     <application
         android:allowBackup="true"
+        android:usesCleartextTraffic="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
@@ -12,6 +17,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Ricegame"
         tools:targetApi="31">
+
+        <meta-data
+            android:name="com.kakao.sdk.AppKey"
+            android:value="585b6d5e5bb07269f2cba458d293fe8e" />
+
 
         <activity
             android:name=".MainActivity"

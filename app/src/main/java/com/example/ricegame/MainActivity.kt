@@ -4,11 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import com.example.ricegame.BalanceGameActivity
-import com.example.ricegame.NearbyRecommendationActivity
-import com.example.ricegame.R
-import com.example.ricegame.RandomRecommendationActivity
-import com.example.ricegame.SearchRestaurantActivity
+
 
 class MainActivity : AppCompatActivity() {
 

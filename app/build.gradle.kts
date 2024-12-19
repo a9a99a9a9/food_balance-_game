@@ -17,6 +17,7 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -35,6 +36,8 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+    viewBinding.isEnabled = true
 }
 
 dependencies {
@@ -46,4 +49,8 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    implementation("com.android.volley:volley:1.2.1")
+    implementation("com.squareup.okhttp3:okhttp:4.11.0")
+
 }
