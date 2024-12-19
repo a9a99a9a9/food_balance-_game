@@ -1,5 +1,7 @@
 package com.example.ricegame
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
@@ -32,7 +34,18 @@ class BalanceGameActivity : AppCompatActivity() {
         // 추가 로직 작성
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        adapter = RestaurantAdapter(restaurantList)
+        // RestaurantAdapter 초기화
+        adapter = RestaurantAdapter(restaurantList) { restaurant ->
+            val url = restaurant.address // 주소 필드를 URL로 사용
+            if (url.startsWith("http://") || url.startsWith("https://")) {
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                startActivity(intent) // 링크로 이동
+            } else {
+                Toast.makeText(this, "유효하지 않은 링크입니다: $url", Toast.LENGTH_SHORT).show()
+            }
+        }
+        recyclerView.adapter = adapter
+
         recyclerView.adapter = adapter
 
         findViewById<Button>(R.id.btn_location1).setOnClickListener { location = 1 }

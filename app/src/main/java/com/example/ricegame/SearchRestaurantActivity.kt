@@ -1,7 +1,8 @@
 package com.example.ricegame
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
-import android.text.TextUtils
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -30,7 +31,17 @@ class SearchRestaurantActivity : AppCompatActivity() {
         searchButton = findViewById(R.id.btn_search)
 
         restaurantList = mutableListOf()
-        adapter = RestaurantAdapter(restaurantList)
+
+        // RestaurantAdapter 초기화 및 클릭 이벤트 설정
+        adapter = RestaurantAdapter(restaurantList) { restaurant ->
+            val url = restaurant.address // 주소 필드를 URL로 사용
+            if (url.startsWith("http://") || url.startsWith("https://")) {
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                startActivity(intent) // 링크로 이동
+            } else {
+                Toast.makeText(this, "유효하지 않은 링크입니다: $url", Toast.LENGTH_SHORT).show()
+            }
+        }
         recyclerView.adapter = adapter
 
         searchButton.setOnClickListener {
@@ -83,5 +94,4 @@ class SearchRestaurantActivity : AppCompatActivity() {
             }
         })
     }
-
 }
