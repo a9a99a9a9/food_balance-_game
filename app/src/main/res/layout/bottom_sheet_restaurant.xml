@@ -25,5 +25,5 @@
         android:id="@+id/btn_open_link"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="링크 열기" />
+        android:text="식당 보러 가기" />
 </LinearLayout>
