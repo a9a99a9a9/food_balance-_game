@@ -7,82 +7,104 @@
     <ImageView
         android:id="@+id/rectangle6"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="62dp"
-        android:layout_marginEnd="0dp"
+        android:layout_height="50dp"
         android:scaleType="centerCrop"
         android:src="@drawable/rectangle6" />
 
-    <ImageView
-        android:id="@+id/rectangle5"
-        android:layout_width="wrap_content"
-        android:layout_height="710dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="100dp"
-        android:layout_marginEnd="0dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/rectangle5" />
-
-    <ImageView
-        android:id="@+id/rectangle7"
-        android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:layout_alignParentBottom="true"
-        android:scaleType="centerCrop"
-        android:src="@drawable/rectangle7" />
-
-
     <!-- 검색창 컨테이너 -->
-
-    <!-- 검색 결과 제목 -->
-
     <LinearLayout
         android:id="@+id/search_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/rectangle6"
-        android:layout_alignParentEnd="true"
         android:layout_margin="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="27dp"
-        android:layout_marginBottom="16dp"
+        android:orientation="vertical"
+        android:padding="12dp"
         android:background="#FFFFFF"
-        android:elevation="2dp"
-        android:orientation="horizontal"
-        android:padding="8dp">
+        android:elevation="8dp">
 
         <!-- 검색 입력 필드 -->
-        <EditText
-            android:id="@+id/et_search"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="8dp"
-            android:layout_marginBottom="8dp"
-            android:layout_weight="1"
-            android:background="@drawable/search_input_bg"
-            android:hint="검색어를 입력하세요"
-            android:padding="12dp"
-            android:singleLine="true"
-            android:textSize="16sp" />
-
-        <!-- 검색 버튼 -->
-        <Button
-            android:id="@+id/btn_search"
-            android:layout_width="75dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="8dp"
-            android:layout_marginBottom="3dp"
-            android:background="@drawable/search_button_bg"
-            android:text="검색"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/et_search"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="@drawable/search_input_bg"
+                android:hint="검색어를 입력하세요"
+                android:padding="12dp"
+                android:singleLine="true"
+                android:textSize="16sp" />
+
+            <!-- 검색 버튼 -->
+            <Button
+                android:id="@+id/btn_search"
+                android:layout_width="75dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/search_button_bg"
+                android:text="검색"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- 필터 영역 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp">
+
+            <Spinner
+                android:id="@+id/spinner_location"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:prompt="@string/location_prompt" />
+
+            <Spinner
+                android:id="@+id/spinner_type"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:prompt="@string/type_prompt" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp">
+
+            <CheckBox
+                android:id="@+id/checkbox_spicy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="매운 음식" />
+
+            <CheckBox
+                android:id="@+id/checkbox_hot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="뜨거운 음식"
+                android:layout_marginStart="16dp" />
+        </LinearLayout>
+
+        <!-- 초기화 버튼 -->
+        <Button
+            android:id="@+id/btn_reset"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="초기화"
+            android:background="@drawable/reset_button_bg"
             android:textColor="#FFFFFF"
-            android:textSize="14sp"
             android:textStyle="bold" />
     </LinearLayout>
 
@@ -91,10 +113,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/search_container"
-        android:layout_margin="5dp"
+        android:layout_margin="8dp"
         android:text="검색 결과"
         android:textSize="18sp"
-        android:textColor="#576BFE"
+        android:textColor="#FFFFFF"
         android:textStyle="bold" />
 
     <!-- 검색 결과 리스트 -->
@@ -103,12 +125,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/tv_search_results_title"
-        android:layout_alignParentEnd="true"
         android:layout_margin="10dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginEnd="14dp"
-        android:layout_marginBottom="16dp"
         android:background="#FFFFFF"
         android:clipToPadding="false"
         android:padding="8dp" />

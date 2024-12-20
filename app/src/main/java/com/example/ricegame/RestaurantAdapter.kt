@@ -7,8 +7,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 class RestaurantAdapter(
-    private val restaurants: List<Restaurant>,
-    private val onItemClick: (Restaurant) -> Unit // 클릭 리스너 추가
+    private val restaurants: List<Map<String, String>>,
+    private val onItemClick: (Map<String, String>) -> Unit // 클릭 리스너
 ) : RecyclerView.Adapter<RestaurantAdapter.RestaurantViewHolder>() {
 
     class RestaurantViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -24,8 +24,8 @@ class RestaurantAdapter(
 
     override fun onBindViewHolder(holder: RestaurantViewHolder, position: Int) {
         val restaurant = restaurants[position]
-        holder.nameTextView.text = restaurant.name
-        holder.addressTextView.text = restaurant.address
+        holder.nameTextView.text = restaurant["name"]
+        holder.addressTextView.text = restaurant["address"]
 
         // 아이템 클릭 리스너 설정
         holder.itemView.setOnClickListener {

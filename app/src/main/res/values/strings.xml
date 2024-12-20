@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">ricegame</string>
+    <string name="location_prompt">지역 선택</string>
+    <string name="type_prompt">타입 선택</string>
 </resources>
