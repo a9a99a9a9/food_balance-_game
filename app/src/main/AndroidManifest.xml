@@ -22,7 +22,7 @@
             android:name="com.kakao.sdk.AppKey"
             android:value="585b6d5e5bb07269f2cba458d293fe8e" />
 
-
+        <!-- Main Activity -->
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -32,17 +32,30 @@
             </intent-filter>
         </activity>
 
+        <!-- Balance Game Activity -->
         <activity
             android:name=".BalanceGameActivity"
             android:exported="true" />
+
+        <!-- Nearby Recommendation Activity -->
         <activity
             android:name=".NearbyRecommendationActivity"
             android:exported="true" />
+
+        <!-- Random Recommendation Activity -->
         <activity
             android:name=".RandomRecommendationActivity"
             android:exported="true" />
+
+        <!-- Search Restaurant Activity -->
         <activity
             android:name=".SearchRestaurantActivity"
             android:exported="true" />
+
+        <!-- Favorites Activity -->
+        <activity
+            android:name=".FavoritesActivity"
+            android:exported="true" />
+
     </application>
 </manifest>

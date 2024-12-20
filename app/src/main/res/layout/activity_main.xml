@@ -3,13 +3,7 @@
     android:layout_height="match_parent"
     android:background="#576BFE">
 
-    <!-- 상단 곡선 배경 -->
-
-    <!-- 중앙 배경 -->
-
-    <!-- 하단 곡선 배경 -->
-
-
+    <!-- 상단 곡선 배경 이미지 -->
     <ImageView
         android:id="@+id/rectangle6"
         android:layout_width="match_parent"
@@ -21,6 +15,7 @@
         android:scaleType="centerCrop"
         android:src="@drawable/rectangle6" />
 
+    <!-- 중앙 곡선 배경 이미지 -->
     <ImageView
         android:id="@+id/rectangle5"
         android:layout_width="wrap_content"
@@ -32,20 +27,16 @@
         android:scaleType="centerCrop"
         android:src="@drawable/rectangle5" />
 
+    <!-- 하단 곡선 배경 이미지 -->
     <ImageView
         android:id="@+id/rectangle7"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="90dp"
         android:layout_alignParentBottom="true"
         android:scaleType="centerCrop"
         android:src="@drawable/rectangle7" />
 
     <!-- 타이틀 텍스트 -->
-
-    <!-- 밸런스 게임 버튼 -->
-
-    <!-- 주변 밥집 추천 버튼 -->
-
     <TextView
         android:id="@+id/title_text"
         android:layout_width="wrap_content"
@@ -59,26 +50,7 @@
         android:textSize="30sp"
         android:textStyle="bold" />
 
-    <!-- 랜덤 밥집 추천 버튼 -->
-
-    <!-- 식당 검색 버튼 -->
-
-    <!-- 만든이 텍스트 -->
-    <Button
-        android:id="@+id/btn_search_restaurant"
-        android:layout_width="300dp"
-        android:layout_height="60dp"
-        android:layout_below="@id/btn_random_recommendation"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="18dp"
-        android:layout_marginEnd="45dp"
-        android:background="@drawable/rounded_box"
-        android:gravity="center"
-        android:text="식당 검색"
-        android:textColor="#D2F5FF"
-        android:textSize="20sp"
-        android:textStyle="bold" />
-
+    <!-- 밸런스 게임 버튼 -->
     <Button
         android:id="@+id/btn_balance_game"
         android:layout_width="300dp"
@@ -94,6 +66,7 @@
         android:textSize="20sp"
         android:textStyle="bold" />
 
+    <!-- 주변 밥집 추천 버튼 -->
     <Button
         android:id="@+id/btn_nearby_recommendation"
         android:layout_width="300dp"
@@ -110,6 +83,7 @@
         android:textSize="20sp"
         android:textStyle="bold" />
 
+    <!-- 랜덤 밥집 추천 버튼 -->
     <Button
         android:id="@+id/btn_random_recommendation"
         android:layout_width="300dp"
@@ -126,6 +100,39 @@
         android:textStyle="bold"
         android:theme="@null"/>
 
+    <!-- 식당 검색 버튼 -->
+    <Button
+        android:id="@+id/btn_search_restaurant"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_below="@id/btn_random_recommendation"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="45dp"
+        android:background="@drawable/rounded_box"
+        android:gravity="center"
+        android:text="식당 검색"
+        android:textColor="#D2F5FF"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <!-- 즐겨찾기 버튼 -->
+    <Button
+        android:id="@+id/btn_favorites"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_below="@id/btn_search_restaurant"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="45dp"
+        android:background="@drawable/rounded_box"
+        android:gravity="center"
+        android:text="즐겨찾기"
+        android:textColor="#D2F5FF"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <!-- 만든이 정보 텍스트 -->
     <TextView
         android:id="@+id/text_made_by"
         android:layout_width="wrap_content"
@@ -135,7 +142,7 @@
         android:layout_marginStart="28dp"
         android:layout_marginBottom="20dp"
         android:gravity="center"
-        android:text="만든이:"
+        android:text="만든이: 김도현, 박화랑, 짠반황, 황도훈"
         android:textColor="#D2F5FF"
         android:textSize="14sp" />
 </RelativeLayout>
