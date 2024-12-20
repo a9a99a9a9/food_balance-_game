@@ -1,5 +1,6 @@
 package com.example.ricegame
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,8 +8,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 class RestaurantAdapter(
+    private val context: Context,
     private val restaurants: List<Map<String, String>>,
-    private val onItemClick: (Map<String, String>) -> Unit // 클릭 리스너
+    private val onItemClick: (Map<String, String>) -> Unit
 ) : RecyclerView.Adapter<RestaurantAdapter.RestaurantViewHolder>() {
 
     class RestaurantViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -17,21 +19,19 @@ class RestaurantAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RestaurantViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_restaurant, parent, false)
+        val view = LayoutInflater.from(context).inflate(R.layout.item_restaurant, parent, false)
         return RestaurantViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: RestaurantViewHolder, position: Int) {
         val restaurant = restaurants[position]
-        holder.nameTextView.text = restaurant["name"]
-        holder.addressTextView.text = restaurant["address"]
+        holder.nameTextView.text = restaurant["name"] ?: "알 수 없음"
+        holder.addressTextView.text = restaurant["address"] ?: "주소 정보 없음"
 
-        // 아이템 클릭 리스너 설정
         holder.itemView.setOnClickListener {
-            onItemClick(restaurant) // 클릭 이벤트 전달
+            onItemClick(restaurant)
         }
     }
 
-    override fun getItemCount() = restaurants.size
+    override fun getItemCount(): Int = restaurants.size
 }

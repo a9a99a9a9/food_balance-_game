@@ -7,6 +7,7 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import okhttp3.*
 import org.json.JSONArray
 import java.io.IOException
@@ -29,6 +30,29 @@ class SearchRestaurantActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search_restaurant)
 
+        initializeUI()
+        setupFilters()
+        fetchRestaurantData()
+
+        // 검색 버튼 클릭 이벤트
+        searchButton.setOnClickListener {
+            val query = searchEditText.text.toString()
+            val location = locationSpinner.selectedItem.toString().toIntOrNull() ?: 0
+            val type = typeSpinner.selectedItem.toString().toIntOrNull() ?: 0
+            val spicy = if (spicyCheckBox.isChecked) 1 else 0
+            val hot = if (hotCheckBox.isChecked) 1 else 0
+
+            fetchRestaurantData(query, location, type, spicy, hot)
+        }
+
+        // 초기화 버튼 클릭 이벤트
+        resetButton.setOnClickListener {
+            resetFilters()
+            fetchRestaurantData()
+        }
+    }
+
+    private fun initializeUI() {
         searchEditText = findViewById(R.id.et_search)
         searchButton = findViewById(R.id.btn_search)
         resetButton = findViewById(R.id.btn_reset)
@@ -40,32 +64,10 @@ class SearchRestaurantActivity : AppCompatActivity() {
 
         restaurantList = mutableListOf()
         recyclerView.layoutManager = LinearLayoutManager(this)
-        adapter = RestaurantAdapter(restaurantList) { restaurant ->
-            openLink(restaurant["url"])
+        adapter = RestaurantAdapter(this, restaurantList) { restaurant ->
+            showRestaurantModal(restaurant["name"] ?: "", restaurant["url"])
         }
         recyclerView.adapter = adapter
-
-        setupFilters()
-        fetchRestaurantData() // 처음 실행 시 전체 데이터 로드
-
-        searchButton.setOnClickListener {
-            val query = searchEditText.text.toString()
-            val location = locationSpinner.selectedItem.toString().toIntOrNull() ?: 0
-            val type = typeSpinner.selectedItem.toString().toIntOrNull() ?: 0
-            val spicy = if (spicyCheckBox.isChecked) 1 else 0
-            val hot = if (hotCheckBox.isChecked) 1 else 0
-
-            fetchRestaurantData(query, location, type, spicy, hot)
-        }
-
-        resetButton.setOnClickListener {
-            searchEditText.text.clear()
-            locationSpinner.setSelection(0)
-            typeSpinner.setSelection(0)
-            spicyCheckBox.isChecked = false
-            hotCheckBox.isChecked = false
-            fetchRestaurantData() // 초기화 후 전체 데이터 로드
-        }
     }
 
     private fun setupFilters() {
@@ -113,7 +115,7 @@ class SearchRestaurantActivity : AppCompatActivity() {
                             (location == 0 || location == locationValue) &&
                             (type == 0 || type == typeValue) &&
                             (spicy == 0 || spicy == spicyValue) &&
-                            (hot == 0 || hot == hotValue)
+                            (hot == 0 || hotValue == hot)
                         ) {
                             restaurantList.add(mapOf("name" to name, "address" to address, "url" to url))
                         }
@@ -131,12 +133,34 @@ class SearchRestaurantActivity : AppCompatActivity() {
         })
     }
 
-    private fun openLink(url: String?) {
-        if (!url.isNullOrEmpty() && (url.startsWith("http://") || url.startsWith("https://"))) {
-            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-            startActivity(intent)
-        } else {
-            Toast.makeText(this, "유효하지 않은 링크입니다", Toast.LENGTH_SHORT).show()
+    private fun resetFilters() {
+        searchEditText.text.clear()
+        locationSpinner.setSelection(0)
+        typeSpinner.setSelection(0)
+        spicyCheckBox.isChecked = false
+        hotCheckBox.isChecked = false
+    }
+
+    private fun showRestaurantModal(name: String, url: String?) {
+        val dialog = BottomSheetDialog(this)
+        val view = layoutInflater.inflate(R.layout.bottom_sheet_restaurant, null)
+        dialog.setContentView(view)
+
+        val restaurantNameTextView = view.findViewById<TextView>(R.id.tv_restaurant_name)
+        val openLinkButton = view.findViewById<Button>(R.id.btn_open_link)
+
+        restaurantNameTextView.text = name
+
+        openLinkButton.setOnClickListener {
+            if (!url.isNullOrEmpty() && (url.startsWith("http://") || url.startsWith("https://"))) {
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                startActivity(intent)
+            } else {
+                Toast.makeText(this, "유효하지 않은 링크입니다", Toast.LENGTH_SHORT).show()
+            }
+            dialog.dismiss()
         }
+
+        dialog.show()
     }
 }
