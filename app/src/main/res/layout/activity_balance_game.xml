@@ -1,263 +1,31 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/light_blue"
     android:padding="16dp">
 
-    <ScrollView
+
+    <TextView
+        android:id="@+id/questionTextView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1">
+        android:layout_height="162dp"
+        android:layout_marginTop="110dp"
+        android:layout_marginBottom="16dp"
+        android:gravity="center"
+        android:text="질문이 여기에 표시됩니다."
+        android:textColor="@color/deep_blue"
+        android:textSize="30sp" />
 
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
 
-            <!-- Question 1 -->
-            <TextView
-                android:id="@+id/question1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="어디서 먹고 싶어요?"
-                android:textSize="18sp"
-                android:layout_marginBottom="8dp" />
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp">
-
-                <Button
-                    android:id="@+id/btn_location1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="구정문" />
-
-                <Button
-                    android:id="@+id/btn_location2"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="신정문" />
-
-                <Button
-                    android:id="@+id/btn_location3"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="사대부고" />
-            </LinearLayout>
-
-            <!-- Question 2 -->
-            <TextView
-                android:id="@+id/question2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="어느 나라 음식을 먹고 싶어요?"
-                android:textSize="18sp"
-                android:layout_marginBottom="8dp" />
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp">
-
-                <Button
-                    android:id="@+id/btn_type1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="한식" />
-
-                <Button
-                    android:id="@+id/btn_type2"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="양식" />
-
-                <Button
-                    android:id="@+id/btn_type3"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="중식" />
-
-                <Button
-                    android:id="@+id/btn_type4"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="일식" />
-            </LinearLayout>
-
-            <!-- Question 3 -->
-            <TextView
-                android:id="@+id/question3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="음식의 맵기는?"
-                android:textSize="18sp"
-                android:layout_marginBottom="8dp" />
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp">
-
-                <Button
-                    android:id="@+id/btn_spicy1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="매운 음식" />
-
-                <Button
-                    android:id="@+id/btn_spicy2"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="안 매운 음식" />
-            </LinearLayout>
-
-            <!-- Question 4 -->
-            <TextView
-                android:id="@+id/question4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="뜨거운 음식 vs 차까운 음식?"
-                android:textSize="18sp"
-                android:layout_marginBottom="8dp" />
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp">
-
-                <Button
-                    android:id="@+id/btn_hot1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="뜨거운 음식" />
-
-                <Button
-                    android:id="@+id/btn_hot2"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="차까운 음식" />
-            </LinearLayout>
-
-            <!-- Question 5 -->
-            <TextView
-                android:id="@+id/question5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="면 vs 밥?"
-                android:textSize="18sp"
-                android:layout_marginBottom="8dp" />
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp">
-
-                <Button
-                    android:id="@+id/btn_noodle1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="면" />
-
-                <Button
-                    android:id="@+id/btn_noodle2"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="밥" />
-            </LinearLayout>
-
-            <!-- Question 6 -->
-            <TextView
-                android:id="@+id/question6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="가벼운 음식 vs 무거운 음식?"
-                android:textSize="18sp"
-                android:layout_marginBottom="8dp" />
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp">
-
-                <Button
-                    android:id="@+id/btn_main1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="가벼운 음식" />
-
-                <Button
-                    android:id="@+id/btn_main2"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="무거운 음식" />
-            </LinearLayout>
-
-            <!-- Question 7 -->
-            <TextView
-                android:id="@+id/question7"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="국물이 있다 vs 국물이 없다?"
-                android:textSize="18sp"
-                android:layout_marginBottom="8dp" />
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp">
-
-                <Button
-                    android:id="@+id/btn_broth1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="국물 있다" />
-
-                <Button
-                    android:id="@+id/btn_broth2"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="국물 없다" />
-            </LinearLayout>
-
-            <Button
-                android:id="@+id/btn_submit"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="식당 찾기" />
-        </LinearLayout>
-    </ScrollView>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+    <GridLayout
+        android:id="@+id/optionsLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp" />
+        android:layout_height="344dp"
+        android:layout_marginTop="16dp"
+        android:columnCount="2"
+        android:gravity="center">
+
+    </GridLayout>
 </LinearLayout>

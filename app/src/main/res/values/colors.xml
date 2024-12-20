@@ -3,4 +3,7 @@
     <color name="button_default_color">#576BFE</color>
     <color name="button_pressed_color">#354CFE</color>
     <color name="button_disabled_color">#A0A0A0</color>
+
+    <color name="deep_blue">#354CFE</color>
+    <color name="light_blue">#ADD8E6</color> <!-- 원하는 색상 코드로 대체 -->
 </resources>
