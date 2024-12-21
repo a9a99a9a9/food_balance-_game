@@ -3,3 +3,11 @@ plugins {
     alias(libs.plugins.android.application) apply false
     alias(libs.plugins.kotlin.android) apply false
 }
+
+repositories {
+    mavenCentral()
+    google()
+    maven {
+        url = uri("https://devrepo.kakao.com/nexus/content/groups/public/")
+    }
+}

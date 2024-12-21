@@ -39,6 +39,16 @@
             </intent-filter>
         </activity>
 
+        <!-- Login Activity -->
+        <activity
+            android:name=".LoginActivity"
+            android:exported="true" />
+
+        <!-- Register Activity -->
+        <activity
+            android:name=".RegisterActivity"
+            android:exported="true" />
+
         <!-- Balance Game Activity -->
         <activity
             android:name=".BalanceGameActivity"
