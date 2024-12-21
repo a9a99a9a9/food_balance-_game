@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
             return
         }
 
-        // 닉네임 표시 및 로그아웃 버튼
+        // 닉네임 표시 및 로그아웃 버튼 초기화
         nicknameTextView = findViewById(R.id.tv_nickname)
         logoutButton = findViewById(R.id.btn_logout)
 
@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
         val nickname = preferences.getString("nickname", "사용자") ?: "사용자"
         nicknameTextView.text = "안녕하세요, $nickname 님!"
 
-        // 로그아웃 버튼 설정
+        // 로그아웃 버튼 클릭 이벤트 설정
         logoutButton.setOnClickListener {
             val editor = preferences.edit()
             editor.putBoolean("is_logged_in", false)
