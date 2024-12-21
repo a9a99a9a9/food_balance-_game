@@ -37,8 +37,19 @@ class SearchRestaurantActivity : AppCompatActivity() {
         // 검색 버튼 클릭 이벤트
         searchButton.setOnClickListener {
             val query = searchEditText.text.toString()
-            val location = locationSpinner.selectedItem.toString().toIntOrNull() ?: 0
-            val type = typeSpinner.selectedItem.toString().toIntOrNull() ?: 0
+            val location = when (locationSpinner.selectedItem.toString()) {
+                "구정문" -> 1
+                "신정문" -> 2
+                "사대부고" -> 3
+                else -> 0
+            }
+            val type = when (typeSpinner.selectedItem.toString()) {
+                "한식" -> 1
+                "양식" -> 2
+                "중식" -> 3
+                "일식" -> 4
+                else -> 0
+            }
             val spicy = if (spicyCheckBox.isChecked) 1 else 0
             val hot = if (hotCheckBox.isChecked) 1 else 0
 
@@ -71,10 +82,12 @@ class SearchRestaurantActivity : AppCompatActivity() {
     }
 
     private fun setupFilters() {
-        val locationOptions = listOf("모든 지역", "1", "2", "3", "4")
+        // location 값을 구정문, 신정문, 사대부고로 매핑
+        val locationOptions = listOf("모든 지역", "구정문", "신정문", "사대부고")
         locationSpinner.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, locationOptions)
 
-        val typeOptions = listOf("모든 타입", "1", "2", "3", "4")
+        // type 값을 한식, 양식, 중식, 일식으로 매핑
+        val typeOptions = listOf("모든 타입", "한식", "양식", "중식", "일식")
         typeSpinner.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, typeOptions)
     }
 
