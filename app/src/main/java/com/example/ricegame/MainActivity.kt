@@ -1,8 +1,8 @@
 package com.example.ricegame
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.preference.PreferenceManager
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -17,12 +17,13 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         // SharedPreferences 가져오기
-        val preferences = PreferenceManager.getDefaultSharedPreferences(this)
+        val preferences = getSharedPreferences("UserPrefs", Context.MODE_PRIVATE)
         val isLoggedIn = preferences.getBoolean("is_logged_in", false)
 
         // 로그인이 되어 있지 않으면 로그인 화면으로 이동
         if (!isLoggedIn) {
             navigateToLogin()
+            return
         }
 
         // 닉네임 표시 및 로그아웃 버튼
@@ -37,7 +38,7 @@ class MainActivity : AppCompatActivity() {
         logoutButton.setOnClickListener {
             val editor = preferences.edit()
             editor.putBoolean("is_logged_in", false)
-            editor.putString("nickname", null)
+            editor.remove("nickname") // 닉네임 제거
             editor.apply()
 
             navigateToLogin()
