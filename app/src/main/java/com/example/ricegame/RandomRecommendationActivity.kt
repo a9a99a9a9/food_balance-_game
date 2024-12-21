@@ -1,21 +1,20 @@
 package com.example.ricegame
+
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.telecom.Call
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.ricegame.databinding.ActivityRandomRecommendationBinding
-import okhttp3.Callback
-import okhttp3.OkHttpClient
-import okhttp3.Request
-import okhttp3.Response
+import okhttp3.*
 import org.json.JSONArray
 import java.io.IOException
 import kotlin.random.Random
 
-data class Restaurant(val name: String, val address: String)
+data class Restaurant(val name: String, val address: String, val url: String)
 
 class RandomRecommendationActivity : AppCompatActivity() {
     private var location: Int = 0
@@ -25,19 +24,17 @@ class RandomRecommendationActivity : AppCompatActivity() {
     private var noodle: Int = 0
     private var main: Int = 0
     private var broth: Int = 0
-    private val restaurantList = mutableListOf<Restaurant>()
-    private lateinit var adapter: RestaurantAdapter
 
     private lateinit var binding: ActivityRandomRecommendationBinding
     private val handler = Handler(Looper.getMainLooper())
+
     private var isSpinning = false
-    private var restaurants = listOf<String>("1", "2", "3", "4", "5", "6", "7", "8", "9", "10") // 임시 값
     private var currentIndex = 0
+
+    private val restaurantList = mutableListOf<Restaurant>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_random_recommendation)
-
         binding = ActivityRandomRecommendationBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -45,6 +42,17 @@ class RandomRecommendationActivity : AppCompatActivity() {
 
         binding.startButton.setOnClickListener { startSpinning() }
         binding.stopButton.setOnClickListener { stopSpinning() }
+
+        // 식당 이름 클릭 시 URL로 이동
+        binding.RestaurantName.setOnClickListener {
+            val selectedRestaurant = restaurantList.getOrNull(currentIndex)
+            if (selectedRestaurant != null && selectedRestaurant.url.isNotBlank()) {
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(selectedRestaurant.url))
+                startActivity(intent)
+            } else {
+                Toast.makeText(this, "유효하지 않은 링크입니다.", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     private fun fetchRestaurantData() {
@@ -54,29 +62,32 @@ class RandomRecommendationActivity : AppCompatActivity() {
         val request = Request.Builder().url(url).build()
 
         client.newCall(request).enqueue(object : Callback {
-            override fun onFailure(call: okhttp3.Call, e: IOException) {
+            override fun onFailure(call: Call, e: IOException) {
+                e.printStackTrace() // 오류 로그 출력
                 runOnUiThread {
                     Toast.makeText(this@RandomRecommendationActivity, "Connection error!", Toast.LENGTH_SHORT).show()
                 }
             }
 
-            override fun onResponse(call: okhttp3.Call, response: Response) {
+            override fun onResponse(call: Call, response: Response) {
                 response.body?.let { responseBody ->
                     try {
-                        // JSON 데이터를 파싱
                         val jsonArray = JSONArray(responseBody.string())
-                        val tempRestaurants = mutableListOf<String>() // 임시 리스트
+                        val tempRestaurants = mutableListOf<Restaurant>()
 
                         for (i in 0 until jsonArray.length()) {
                             val jsonObject = jsonArray.getJSONObject(i)
-                            val name = jsonObject.getString("name") // "name" 키의 값을 가져옴
-                            tempRestaurants.add(name) // 리스트에 추가
+                            val name = jsonObject.getString("name")
+                            val address = jsonObject.getString("address")
+                            val url = jsonObject.optString("url", "") // URL 필드 처리
+                            tempRestaurants.add(Restaurant(name, address, url))
                         }
 
-                        // restaurants 리스트를 업데이트 (UI 스레드에서 동작 필요)
                         runOnUiThread {
-                            restaurants = tempRestaurants // 업데이트
-                            if (restaurants.isNotEmpty()) {
+                            restaurantList.clear()
+                            restaurantList.addAll(tempRestaurants)
+
+                            if (restaurantList.isNotEmpty()) {
                                 Toast.makeText(this@RandomRecommendationActivity, "Data loaded!", Toast.LENGTH_SHORT).show()
                             } else {
                                 Toast.makeText(this@RandomRecommendationActivity, "No restaurants found.", Toast.LENGTH_SHORT).show()
@@ -93,7 +104,7 @@ class RandomRecommendationActivity : AppCompatActivity() {
     }
 
     private fun startSpinning() {
-        if (restaurants.isEmpty()) {
+        if (isSpinning || restaurantList.isEmpty()) {
             binding.RestaurantName.text = "No data available"
             return
         }
@@ -108,8 +119,8 @@ class RandomRecommendationActivity : AppCompatActivity() {
             override fun run() {
                 if (!isSpinning) return
 
-                currentIndex = Random.nextInt(restaurants.size)
-                binding.RestaurantName.text = restaurants[currentIndex]
+                currentIndex = Random.nextInt(restaurantList.size)
+                binding.RestaurantName.text = restaurantList[currentIndex].name
 
                 handler.postDelayed(this, 50)
             }
@@ -125,14 +136,14 @@ class RandomRecommendationActivity : AppCompatActivity() {
         handler.post(object : Runnable {
             override fun run() {
                 if (delay > 300) {
-                    binding.RestaurantName.text = restaurants[currentIndex]
+                    binding.RestaurantName.text = restaurantList[currentIndex].name
                     binding.startButton.visibility = Button.VISIBLE
                     binding.stopButton.visibility = Button.GONE
                     return
                 }
 
-                currentIndex = Random.nextInt(restaurants.size)
-                binding.RestaurantName.text = restaurants[currentIndex]
+                currentIndex = Random.nextInt(restaurantList.size)
+                binding.RestaurantName.text = restaurantList[currentIndex].name
 
                 delay += 20
                 handler.postDelayed(this, delay)
