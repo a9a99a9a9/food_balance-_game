@@ -2,6 +2,7 @@
     package="com.example.ricegame"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- Permissions -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -18,9 +19,15 @@
         android:theme="@style/Theme.Ricegame"
         tools:targetApi="31">
 
+        <!-- Kakao SDK Meta-data -->
         <meta-data
             android:name="com.kakao.sdk.AppKey"
             android:value="585b6d5e5bb07269f2cba458d293fe8e" />
+
+        <!-- Google Maps API Key -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyB1E_xbuktYHA4SDwgy28ZQXwmCy9L8Q78" />
 
         <!-- Main Activity -->
         <activity
